@@ -72,22 +72,12 @@ async function detect() {
 onMounted(() => {
   video = document.getElementById("video")
   Promise.all([
-    faceapi.nets.tinyFaceDetector.loadFromUri('/models/weights'),
-    faceapi.nets.faceLandmark68TinyNet.loadFromUri('/models/weights'),
+    faceapi.nets.tinyFaceDetector.loadFromUri('/static/models/weights'),
+    faceapi.nets.faceLandmark68TinyNet.loadFromUri('/static/models/weights'),
   ]).then(webCameraOn);
   canvas2 = document.getElementById("canvas2");
   ctxCanvas2 = canvas2.getContext('2d')
 
-  // 画像読み込み
-  const chara = new Image();
-  chara.onload = () => {
-    function drawCanvas() {
-      ctxCanvas2.clearRect(0, 0, canvas2.width, canvas2.height);
-      ctxCanvas2.drawImage(chara, (leftOutline.value._x - canvas.width), leftOutline.value._y);
-    }
-    setInterval(drawCanvas, 1000);
-  };
-  chara.src = "/img/face01.png";
 
 })
 
